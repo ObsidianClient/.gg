@@ -18,7 +18,7 @@ app.use(async (req, res) => {
 
       // ✅ Remove external scripts that obviously belong to CrazyGames
       html = html.replace(
-        /<script[^>]+src=["'][^"']*(crazygames|crazygames-sdk|cdn.embedly)[^"']*["'][^>]*><\/script>/gi,
+        /<script[^>]+src=["'][^"']*(crazygames)[^"']*["'][^>]*><\/script>/gi,
         ''
       );
 
