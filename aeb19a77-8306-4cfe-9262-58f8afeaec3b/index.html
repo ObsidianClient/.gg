@@ -1,21 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>-</title>
+  <title>Redirecting to Kirka.io</title>
   <script>
-    fetch("https://api.allorigins.win/raw?url=https://kirka.io/")
-      .then(res => res.text())
-      .then(html => {
-        document.open();
-        document.write(html);
-        document.close();
-      })
-      .catch(err => {
-        document.body.innerText = "Failed to load Kirka.io: " + err;
-      });
+    // Immediately redirect using JavaScript
+    window.location.href = "https://kirka.io/";
   </script>
 </head>
 <body>
-  <p>Loading Kirka.io...</p>
 </body>
 </html>
