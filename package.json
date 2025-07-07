@@ -1,7 +1,6 @@
 {
   "name": "kirka-proxy",
   "version": "1.0.0",
-  "description": "Simple proxy to load kirka.io without CrazyGames wrapper",
   "main": "proxy.js",
   "scripts": {
     "start": "node proxy.js"
