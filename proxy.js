@@ -15,15 +15,7 @@ app.use(async (req, res) => {
 
       // ✅ Remove just the CrazyGames wrapper (non-Kirka content)
       html = html.replace(/<div[^>]+id=["']?crazygames-wrapper["']?[^>]*>[\s\S]*?<\/div>/gi, '');
-
-      // ✅ Remove external scripts that obviously belong to CrazyGames
-      html = html.replace(
-        /<script[^>]+src=["'][^"']*(crazygames)[^"']*["'][^>]*><\/script>/gi,
-        ''
-      );
-
-      // ❗ Do NOT remove iframes or inline scripts — some may be required by Kirka
-
+      
       res.set('Content-Type', 'text/html');
       res.send(html);
     } else {
