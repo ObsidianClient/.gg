@@ -13,30 +13,21 @@ app.use(async (req, res) => {
     if (contentType.includes('text/html')) {
       let html = await kirkaRes.text();
 
-      // ✅ Remove just CrazyGames wrapper div
-      html = html.replace(/<div[^>]*id=["']?crazygames-wrapper["']?[^>]*>[\s\S]*?<\/div>/gi, '');
+      // ✅ Remove just the CrazyGames wrapper (non-Kirka content)
+      html = html.replace(/<div[^>]+id=["']?crazygames-wrapper["']?[^>]*>[\s\S]*?<\/div>/gi, '');
 
-      // ✅ Remove script tags that point to known ad or embed sources
+      // ✅ Remove external scripts that obviously belong to CrazyGames
       html = html.replace(
-        /<script[^>]+src=["'][^"']*(crazygames|embed|sdk|ads)[^"']*["'][^>]*><\/script>/gi,
+        /<script[^>]+src=["'][^"']*(crazygames|crazygames-sdk|embedly|partner-ads)[^"']*["'][^>]*><\/script>/gi,
         ''
       );
 
-      // ✅ Remove inline scripts that reference window.parent or crazygames
-      html = html.replace(
-        /<script[^>]*>[\s\S]*?(crazygames|window\.parent|iframe)[\s\S]*?<\/script>/gi,
-        ''
-      );
-
-      // ✅ Remove iframes completely
-      html = html.replace(/<iframe[\s\S]*?<\/iframe>/gi, '');
-
-      // ❗ DO NOT remove all <script> tags — or you break Kirka’s core logic
+      // ❗ Do NOT remove iframes or inline scripts — some may be required by Kirka
 
       res.set('Content-Type', 'text/html');
       res.send(html);
     } else {
-      // Pass through all other content (JS, CSS, fonts, etc.)
+      // Non-HTML (e.g. .js, .css, .wasm, .png): stream as-is
       res.set('Content-Type', contentType);
       kirkaRes.body.pipe(res);
     }
