@@ -6,23 +6,32 @@ const PORT = process.env.PORT || 3000;
 
 app.use(async (req, res) => {
   try {
-    // Fetch Kirka.io main page
-    const kirkaRes = await fetch('https://kirka.io/');
-    let html = await kirkaRes.text();
+    const targetUrl = `https://kirka.io${req.originalUrl}`;
+    const kirkaRes = await fetch(targetUrl);
 
-    html = html.replace(/<div[^>]*id=["']?crazygames-wrapper["']?[^>]*>[\s\S]*?<\/div>/gi, '');
+    const contentType = kirkaRes.headers.get('content-type') || '';
 
-    html = html.replace(/<script[^>]*src=["'][^"']*crazygames[^"']*["'][^>]*><\/script>/gi, '');
-    
-    // Send cleaned HTML
-    res.set('Content-Type', 'text/html');
-    res.send(html);
+    if (contentType.includes('text/html')) {
+      let html = await kirkaRes.text();
 
+      // Remove CrazyGames wrapper div
+      html = html.replace(/<div[^>]*id=["']?crazygames-wrapper["']?[^>]*>[\s\S]*?<\/div>/gi, '');
+
+      // Remove CrazyGames script tags
+      html = html.replace(/<script[^>]*src=["'][^"']*crazygames[^"']*["'][^>]*><\/script>/gi, '');
+
+      res.set('Content-Type', 'text/html');
+      res.send(html);
+    } else {
+      // For other content types (js, css, images), stream them directly
+      res.set('Content-Type', contentType);
+      kirkaRes.body.pipe(res);
+    }
   } catch (err) {
     res.status(500).send('Error fetching Kirka.io: ' + err.message);
   }
 });
 
 app.listen(PORT, () => {
-  console.log(`Proxy server listening at http://localhost:${PORT}`);
+  console.log(`Proxy server listening on port ${PORT}`);
 });
