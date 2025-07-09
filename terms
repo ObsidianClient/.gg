@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms of Service | ObsidianClient</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0e0e0e;
+      color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #1e1e1e;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid #444;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #8a2be2;
+    }
+    main {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #161616;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #000;
+    }
+    h2 {
+      color: #8a2be2;
+    }
+    p {
+      line-height: 1.6;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ObsidianClient Terms of Service</h1>
+  </header>
+
+  <main>
+    <h2>1. Usage</h2>
+    <p>
+      By inviting and using ObsidianClient, you agree to these Terms of Service. You must follow Discord’s Terms of Service and Community Guidelines while using this bot.
+    </p>
+
+    <h2>2. Data Collection</h2>
+    <p>
+      ObsidianClient may collect basic server and user data for functionality and moderation purposes. This may include user IDs, message content for moderation, server configuration data, and command usage. No sensitive or personal data is collected or stored unnecessarily.
+    </p>
+
+    <h2>3. Restrictions</h2>
+    <p>
+      You agree not to use the bot for illegal activities, abuse, harassment, or spam. If you violate these rules, we reserve the right to block the bot from your server or report serious abuse to Discord.
+    </p>
+
+    <h2>4. Liability</h2>
+    <p>
+      ObsidianClient is provided "as is" with no warranty. We are not responsible for any issues, damages, or losses caused by the use of this bot.
+    </p>
+
+    <h2>5. Changes</h2>
+    <p>
+      We reserve the right to update these Terms at any time. Continued use of the bot after changes means you accept the updated terms.
+    </p>
+
+    <h2>6. Contact</h2>
+    <p>
+      For questions or concerns, contact the bot owner via Discord or the official support server.
+    </p>
+  </main>
+
+  <footer>
+    &copy; 2025 ObsidianClient | Not affiliated with Discord Inc.
+  </footer>
+</body>
+</html>
